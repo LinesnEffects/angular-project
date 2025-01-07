@@ -1,19 +1,22 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Task } from '../../Task';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
-// import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-task-item',
   standalone: true,
-  imports: [CommonModule, FaIconComponent, /* HttpClientModule */],
+  imports: [CommonModule, FaIconComponent],
   templateUrl: './task-item.component.html',
   styleUrl: './task-item.component.css',
 })
 export class TaskItemComponent {
-  @Input() task!: Task;
-
+  @Input() task: Task;
+  @Output() onDeleteTask: EventEmitter<Task> = new EventEmitter();
   faTimes = faTimes;
+
+  onDelete(task) {
+    this.onDeleteTask.emit(task);
+  }
 }

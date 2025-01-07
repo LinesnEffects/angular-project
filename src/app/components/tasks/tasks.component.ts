@@ -8,7 +8,7 @@ import { TaskService } from '../../services/task.service';
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [CommonModule, TaskItemComponent, /* HttpClientModule */],
+  imports: [CommonModule, TaskItemComponent /* HttpClientModule */],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css',
 })
@@ -19,5 +19,13 @@ export class TasksComponent {
 
   ngOnInit(): void {
     this.taskService.getTasks().subscribe((tasks) => (this.tasks = tasks));
+  }
+
+  deleteTask(task: Task) {
+    this.taskService
+      .deleteTask(task)
+      .subscribe(
+        () => (this.tasks = this.tasks.filter((t) => t.id !== task.id))
+      );
   }
 }

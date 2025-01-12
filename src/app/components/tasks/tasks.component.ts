@@ -4,14 +4,13 @@ import { Task } from '../../Task';
 import { TaskItemComponent } from '../task-item/task-item.component';
 import { TaskService } from '../../services/task.service';
 import { AddTaskComponent } from '../add-task/add-task.component';
-// import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-tasks',
   standalone: true,
   imports: [
     CommonModule,
-    TaskItemComponent /* HttpClientModule */,
+    TaskItemComponent,
     AddTaskComponent,
   ],
   templateUrl: './tasks.component.html',
